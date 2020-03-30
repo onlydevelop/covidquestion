@@ -68,10 +68,10 @@ const EXPOSURE_OCCUPATION_LIST = [
 ];
 
 const EXPOSURE_CONTAGION_LIST = [
-    { name: 'Both (b) & (c)', code: '4' },
-    { name: 'I attended a public meeting / conference / religious congregation / party / wedding / any such mass gathering in the last 14 days', code: '3' },
-    { name: 'I travelled in the last 14 days by air or train, or bus or public transport (Metro) or chauffeur driven car', code: '2' },
-    { name: 'None of these', code: '1' }
+    { name: 'a) Both (b) & (c)', code: '4' },
+    { name: 'b) I attended a public meeting / conference / religious congregation / party / wedding / any such mass gathering in the last 14 days', code: '3' },
+    { name: 'c) I travelled in the last 14 days by air or train, or bus or public transport (Metro) or chauffeur driven car', code: '2' },
+    { name: 'd) None of these', code: '1' }
 ];
 
 const SOCIAL_POLICY_LIST = [
@@ -111,7 +111,7 @@ STEP_ITEMS.push({label: 'Personal Details: Age', data: {
 
 STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
     disease: {
-        type: 'select',
+        type: 'checkbox',
         options: DISEASE_LIST,
         validations: {},
         errors: {},
@@ -232,7 +232,7 @@ STEP_ITEMS.push({label: 'Exposure', data: {
 
 STEP_ITEMS.push({label: 'Exposure', data: {
     Ex3: {
-        type: 'select',
+        type: 'radio',
         options: EXPOSURE_CONTAGION_LIST,
         validations: {},
         errors: {},
