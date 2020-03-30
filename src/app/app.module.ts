@@ -1,18 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MultiStepFormComponent } from './components/multi-step-form/multi-step-form.component';
+import { FormatTitlePipe } from './pipes/format-title.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule ],
+  declarations: [ AppComponent, MultiStepFormComponent, FormatTitlePipe ],
+  bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
