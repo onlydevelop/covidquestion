@@ -18,6 +18,7 @@ export class MultiStepFormComponent implements OnInit {
   masterFormFields: Array<string>;
   stepItems: Array<any>;
   masterForm: Array<FormGroup>;
+  progress: string;
 
   constructor(
     private readonly _formBuilder: FormBuilder
@@ -25,6 +26,7 @@ export class MultiStepFormComponent implements OnInit {
 
   ngOnInit() {
     this.activeStepIndex = 0;
+    this.progress = '0%';
     this.masterForm = [];
     this.currentFormContent = [];
     this.formFields = [];
@@ -77,7 +79,7 @@ export class MultiStepFormComponent implements OnInit {
   goToStep(step: string): void {
     this.activeStepIndex =
       step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
-    
+    this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
     this.setFormPreview();
   }
 
