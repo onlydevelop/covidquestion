@@ -11,13 +11,15 @@
                     *ngFor="let field of formFields[i]; trackBy: trackByFn"
                     [ngSwitch]="currentFormContent[i][field].type"
                     >
-                        <label class="card-title" [for]="field">{{ field | formatTitle }}</label>
+                        <label class="card-title" [for]="field">{{ currentFormContent[i][field].placeholder | formatTitle }}</label>
                         <br/>
                         <ng-container *ngSwitchCase="'textarea'">
-                            <textarea
+                            <div class="form-group">
+                                <textarea class="form-control"
                                 [id]="field"
                                 [formControlName]="field"
                                 [placeholder]="currentFormContent[i][field].placeholder"></textarea>
+                            </div>
                         </ng-container>
 
                         <ng-container *ngSwitchCase="'select'">
@@ -40,11 +42,14 @@
                         </ng-container>
 
                         <ng-container *ngSwitchCase="'radio'">
-                            <div class="form-check" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn">
-                                <input class="form-check-input" type="radio" value="" [id]="option.code" [name]="option.type">
-                                <label class="form-check-label" for="option.code">
-                                    {{ option.name }}
-                                </label>
+                            <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn">
+                                <div class="form-control">
+                                        <input type="radio" [value]="option.code" [formControlName]="field">
+                                        <span class="mr-4"></span>
+                                        <label>
+                                            {{ option.name }}
+                                        </label>
+                                </div>
                             </div>
                         </ng-container>
 
