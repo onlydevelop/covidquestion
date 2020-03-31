@@ -99,7 +99,7 @@ STEP_ITEMS.push({label: 'Personal Details: Name', data: {
 });
 
 STEP_ITEMS.push({label: 'Personal Details: Age', data: {
-    age: {
+    A: {
         type: 'radio',
         options: AGE_LIST,
         validations: {},
@@ -110,7 +110,7 @@ STEP_ITEMS.push({label: 'Personal Details: Age', data: {
 });
 
 STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
-    disease: {
+    Cm: {
         type: 'checkbox',
         options: DISEASE_LIST,
         validations: {},
@@ -121,7 +121,7 @@ STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
 });
 
 STEP_ITEMS.push({label: 'Personal Details: Gender', data: {
-    gender: {
+    G: {
         type: 'radio',
         options: GENDER_LIST,
         validations: {},
@@ -132,7 +132,7 @@ STEP_ITEMS.push({label: 'Personal Details: Gender', data: {
 });
 
 STEP_ITEMS.push({label: 'Personal Details: Smoking Habits', data: {
-    smoker: {
+    Sm: {
         type: 'radio',
         options: SMOKER_LIST,
         validations: {},
@@ -265,67 +265,4 @@ STEP_ITEMS.push({label: 'Social Policy', data: {
 
 STEP_ITEMS.push({ label: 'Review & Submit', data: {} });
 
-// const DATA_STEP_1 = {
-//     language: {
-//         type: 'select',
-//         options: LANGUAGES_LIST,
-//         validations: {},
-//         errors: {},
-//         placeholder: 'Choose your language'
-//       }
-// };
-//   const DATA_STEP_1 = {
-//     firstName: { type: 'text', validations: {}, errors: {}, placeholder: 'First Name' },
-//     lastName: { type: 'text', validations: {}, errors: {}, placeholder: 'Last Name' },
-//     dateOfBirth: {
-//       type: 'date',
-//       validations: {},
-//       errors: {},
-//       placeholder: 'Date of Birth'
-//     }
-//   };
-  
-//   const DATA_STEP_2 = {
-//     address: { type: 'textarea', validations: {}, errors: {}, placeholder: 'Full Address' },
-//     country: {
-//       type: 'select',
-//       options: LANGUAGES_LIST,
-//       validations: {},
-//       errors: {},
-//       placeholder: 'Country'
-//     }
-//   };
-  
-//   const DATA_STEP_3 = {
-//     phone: {
-//       type: 'phone',
-//       validations: {
-//         pattern: /^\d{10}$/
-//       },
-//       errors: {
-//         pattern: 'Please enter a valid phone number'
-//       },
-//       placeholder: 'Contact Number'
-//     },
-//     otp: {
-//       type: 'number',
-//       validations: {
-//         required: true,
-//         minLength: 4
-//       },
-//       errors: {
-//         required: 'This field can not be left blank',
-//         minlength: 'Minimum length should be 4 characters'
-//       },
-//       placeholder: 'One Time Password'
-//     }
-//   };
-  
-//   const STEP_ITEMS = [
-//     { label: 'Step 1', data: DATA_STEP_1 },
-//     { label: 'Step 2', data: DATA_STEP_2 },
-//     { label: 'Step 3', data: DATA_STEP_3 },
-//     { label: 'Review & Submit', data: {} }
-//   ];
-  
-  export { STEP_ITEMS }
+export { STEP_ITEMS }
