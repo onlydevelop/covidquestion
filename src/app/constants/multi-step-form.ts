@@ -84,7 +84,7 @@ const STEP_ITEMS = [];
 
 STEP_ITEMS.push({label: 'Select Language', data: {
     language: {
-        type: 'select',
+        type: 'radio',
         options: LANGUAGES_LIST,
         validations: {},
         errors: {},
@@ -100,7 +100,7 @@ STEP_ITEMS.push({label: 'Personal Details: Name', data: {
 
 STEP_ITEMS.push({label: 'Personal Details: Age', data: {
     age: {
-        type: 'select',
+        type: 'radio',
         options: AGE_LIST,
         validations: {},
         errors: {},
@@ -115,14 +115,14 @@ STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
         options: DISEASE_LIST,
         validations: {},
         errors: {},
-        placeholder: 'Diseases'
+        placeholder: 'Existing Diseases'
       }
     }
 });
 
 STEP_ITEMS.push({label: 'Personal Details: Gender', data: {
     gender: {
-        type: 'select',
+        type: 'radio',
         options: GENDER_LIST,
         validations: {},
         errors: {},
@@ -133,7 +133,7 @@ STEP_ITEMS.push({label: 'Personal Details: Gender', data: {
 
 STEP_ITEMS.push({label: 'Personal Details: Smoking Habits', data: {
     smoker: {
-        type: 'select',
+        type: 'radio',
         options: SMOKER_LIST,
         validations: {},
         errors: {},
@@ -144,7 +144,7 @@ STEP_ITEMS.push({label: 'Personal Details: Smoking Habits', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be1: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST,
         validations: {},
         errors: {},
@@ -155,7 +155,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be2: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST,
         validations: {},
         errors: {},
@@ -166,7 +166,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be3: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST,
         validations: {},
         errors: {},
@@ -177,7 +177,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be4: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST,
         validations: {},
         errors: {},
@@ -188,7 +188,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be5: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST_1,
         validations: {},
         errors: {},
@@ -199,7 +199,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be6: {
-        type: 'select',
+        type: 'radio',
         options: BE_LIST_2,
         validations: {},
         errors: {},
@@ -210,7 +210,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 
 STEP_ITEMS.push({label: 'Exposure', data: {
     Ex1: {
-        type: 'select',
+        type: 'radio',
         options: EXPOSURE_STAY_LIST,
         validations: {},
         errors: {},
@@ -221,7 +221,7 @@ STEP_ITEMS.push({label: 'Exposure', data: {
 
 STEP_ITEMS.push({label: 'Exposure', data: {
     Ex2: {
-        type: 'select',
+        type: 'radio',
         options: EXPOSURE_OCCUPATION_LIST,
         validations: {},
         errors: {},
@@ -243,7 +243,7 @@ STEP_ITEMS.push({label: 'Exposure', data: {
 
 STEP_ITEMS.push({label: 'Social Policy', data: {
     SP1: {
-        type: 'select',
+        type: 'radio',
         options: SOCIAL_POLICY_LIST,
         validations: {},
         errors: {},
@@ -254,7 +254,7 @@ STEP_ITEMS.push({label: 'Social Policy', data: {
 
 STEP_ITEMS.push({label: 'Social Policy', data: {
     SP2: {
-        type: 'select',
+        type: 'radio',
         options: SOCIAL_POLICY_LIST,
         validations: {},
         errors: {},
