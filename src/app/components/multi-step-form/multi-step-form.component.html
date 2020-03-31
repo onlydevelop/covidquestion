@@ -33,9 +33,9 @@
                         </ng-container>
 
                         <ng-container *ngSwitchCase="'checkbox'">
-                                <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn">
+                                <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn; let i = index">
                                     <div class="form-control">
-                                            <input type="checkbox" [value]="option.code" [formControlName]="field">
+                                            <input type="checkbox" [value]="option.code" [id]="i" [formControlName]="field" (change)="getSelectedCheckboxes($event)">
                                             <span class="mr-4"></span>
                                             <div class="d-inline">
                                                 {{ option.name }}

@@ -19,6 +19,8 @@ export class MultiStepFormComponent implements OnInit {
   stepItems: Array<any>;
   masterForm: Array<FormGroup>;
   progress: string;
+  checkboxCount: number;
+  cmValue: number;
 
   constructor(
     private readonly _formBuilder: FormBuilder
@@ -31,6 +33,8 @@ export class MultiStepFormComponent implements OnInit {
     this.currentFormContent = [];
     this.formFields = [];
     this.stepItems = this.formContent;
+    this.checkboxCount = 0;
+    this.cmValue = 1;
 
     this.stepItems.forEach((data, i) => {
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
@@ -77,18 +81,28 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   goToStep(step: string): void {
-    this.activeStepIndex =
-      step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
+    this.activeStepIndex = step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
     this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
-    this.setFormPreview();
+    this.setFormPreview(this.activeStepIndex);
   }
 
-  setFormPreview(): void {
+  setFormPreview(activeStepIndex: number): void {
+
+    console.log(this.masterForm[activeStepIndex].controls);
+    console.log('Object Key = ' + Object.keys(this.masterForm[activeStepIndex].controls));
+    let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
+    if(controlName === 'Cm') {
+      this.masterForm[activeStepIndex].controls['Cm'].setValue(false);
+      this.cmValue = 1;
+      this.checkboxCount = 0;
+    }
+
     this.formData = this.masterForm.reduce(
       (masterForm, currentForm) => ({ ...masterForm, ...currentForm.value }),
       {}
     );
 
+    this.formData['Cm'] = this.cmValue;
     console.log(JSON.stringify(this.formData));
 
     this.masterFormFields = Object.keys(this.formData);
@@ -100,5 +114,14 @@ export class MultiStepFormComponent implements OnInit {
 
   trackByFn(index: number): number {
     return index;
+  }
+
+  getSelectedCheckboxes(e) {
+    console.log(e);
+    this.checkboxCount = e.target.checked ? this.checkboxCount + 1 : this.checkboxCount - 1;
+    if(this.checkboxCount > 2) this.cmValue = 4;
+    else if (this.checkboxCount === 2) this.cmValue = 3;
+    else if (this.checkboxCount === 1) this.cmValue = 2;
+    else this.cmValue = 1;
   }
 }
