@@ -89,6 +89,8 @@ export class MultiStepFormComponent implements OnInit {
       {}
     );
 
+    console.log(JSON.stringify(this.formData));
+
     this.masterFormFields = Object.keys(this.formData);
   }
 
