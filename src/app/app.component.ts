@@ -21,6 +21,6 @@ export class AppComponent implements OnInit  {
     this.formData = formData;
 
     // post form data here
-    alert(JSON.stringify(this.formData));
+    // alert(JSON.stringify(this.formData));
   }
 }

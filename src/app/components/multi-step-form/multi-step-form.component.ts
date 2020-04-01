@@ -99,17 +99,12 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   goToStep(step: string): void {
-    console.log(this.hitCount);
-
     this.activeStepIndex = step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
     this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
     this.setFormPreview(this.activeStepIndex);
   }
 
   setFormPreview(activeStepIndex: number): void {
-
-    console.log(this.masterForm[activeStepIndex].controls);
-    console.log('Object Key = ' + Object.keys(this.masterForm[activeStepIndex].controls));
     let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
     if(controlName === 'Cm') {
       this.masterForm[activeStepIndex].controls['Cm'].setValue(false);
@@ -131,7 +126,6 @@ export class MultiStepFormComponent implements OnInit {
   onFormSubmit(): void {
     this.formSubmit.emit(this.formData);
     this._questionService.postSurveyData(this.question as Question).subscribe(res => {
-      console.log(res);
       this.surveyResponse = res;
       this.showSpeedometer = true;
     });
@@ -142,7 +136,6 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   getSelectedCheckboxes(e) {
-    console.log(e);
     this.checkboxCount = e.target.checked ? this.checkboxCount + 1 : this.checkboxCount - 1;
     if(this.checkboxCount > 2) this.cmValue = 4;
     else if (this.checkboxCount === 2) this.cmValue = 3;
