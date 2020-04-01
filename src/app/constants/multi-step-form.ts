@@ -12,7 +12,13 @@ const AGE_LIST = [
     { name: '40 - 49', code: '3' },
     { name: '10 - 39', code: '2' },
     { name: '0 - 9', code: '1' },
-]
+];
+
+const GENDER_LIST = [
+    { name: 'Female', code: '1' },
+    { name: 'Male', code: '2' },
+    { name: 'Other', code: '3' }
+];
 
 const DISEASE_LIST = [
     { name: 'Cardio-Vascular Diseases (Heart Problem)', code: '1' },
@@ -23,12 +29,6 @@ const DISEASE_LIST = [
     { name: 'Cancer (in last 5 years) (Except lung cancer)', code: '6' },
     { name: 'Hypertension', code: '7' },
 ];
-
-const GENDER_LIST = [
-    { name: 'Female', code: '1' },
-    { name: 'Male', code: '2' },
-    { name: 'Other', code: '3' }
-]
 
 const SMOKER_LIST = [
     { name: 'No', code: '1' },
