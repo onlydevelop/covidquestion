@@ -88,7 +88,7 @@
 
                 <div
                     class="preview-container"
-                    *ngIf="activeStepIndex === stepItems.length - 1">
+                    *ngIf="activeStepIndex === stepItems.length - 1 && !showSpeedometer">
                     <ul>
                     <li
                         class="form-details-list"
@@ -99,7 +99,11 @@
                     </ul>
                 </div>
 
-                <div class="button-container">
+                <div *ngIf="showSpeedometer">
+                    Show speedometer here!
+                </div>
+
+                <div class="button-container" *ngIf="!showSpeedometer">
                     <button
                     type="button"
                     [class]="activeStepIndex ? 'btn btn-primary' : 'btn btn-secondary'"
@@ -118,6 +122,12 @@
                     [disabled]="activeStepIndex === stepItems.length - 1 || masterForm[i].invalid"
                     (click)="goToStep('next')"
                     >Next</button>
+                </div>
+
+                <div>
+                    <hr/>
+                    <div class="d-flex justify-content-center text-secondary">Total Visitors to the site: <em>{{ hitCount.visits }}</em></div>
+                    <div class="d-flex justify-content-center text-secondary">Total Surveys taken: <em>{{ hitCount.surveys }}</em></div>
                 </div>
             </div>
         </form>

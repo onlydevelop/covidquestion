@@ -28,6 +28,7 @@ export class MultiStepFormComponent implements OnInit {
   hitCount: HitCount;
   question: Question;
   surveyResponse: SurveyResponse;
+  showSpeedometer: boolean;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -51,6 +52,7 @@ export class MultiStepFormComponent implements OnInit {
     this.checkboxCount = 0;
     this.cmValue = 1;
     this.surveyResponse = null;
+    this.showSpeedometer = false;
 
     this.stepItems.forEach((data, i) => {
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
@@ -131,6 +133,7 @@ export class MultiStepFormComponent implements OnInit {
     this._questionService.postSurveyData(this.question as Question).subscribe(res => {
       console.log(res);
       this.surveyResponse = res;
+      this.showSpeedometer = true;
     });
   }
 
