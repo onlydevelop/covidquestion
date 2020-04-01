@@ -9,7 +9,6 @@
     <div class="progress">
         <span class="mr-4">Completion: </span><div class="progress-bar progress-bar-striped bg-primary" role="progressbar" [style.width]="progress" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-    <h3>COVID-19 Risk Assessment Tool</h3>
     <ng-container *ngFor="let form of masterForm; let i = index; trackBy: trackByFn">
         <form action="" [formGroup]="masterForm[i]" *ngIf="i === activeStepIndex || masterForm.length === 1">
             <div class="card card-body" >
