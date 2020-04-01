@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { QuestionService } from '../../services/question.service';
+import { HitCount } from 'src/app/models/HitCount';
+import { Question } from 'src/app/models/Question';
+import { SurveyResponse } from 'src/app/models/SurveyResponse';
 
 @Component({
   selector: 'app-multi-step-form',
@@ -21,12 +25,23 @@ export class MultiStepFormComponent implements OnInit {
   progress: string;
   checkboxCount: number;
   cmValue: number;
+  hitCount: HitCount;
+  question: Question;
+  surveyResponse: SurveyResponse;
 
   constructor(
-    private readonly _formBuilder: FormBuilder
+    private readonly _formBuilder: FormBuilder,
+    private readonly _questionService: QuestionService
   ) {}
 
   ngOnInit() {
+    this._questionService.getHitCount().subscribe(hitCount => {
+      this.hitCount = {
+        visits: hitCount.visits,
+        surveys: hitCount.surveys
+      }
+    });
+
     this.activeStepIndex = 0;
     this.progress = '0%';
     this.masterForm = [];
@@ -35,6 +50,7 @@ export class MultiStepFormComponent implements OnInit {
     this.stepItems = this.formContent;
     this.checkboxCount = 0;
     this.cmValue = 1;
+    this.surveyResponse = null;
 
     this.stepItems.forEach((data, i) => {
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
@@ -81,6 +97,8 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   goToStep(step: string): void {
+    console.log(this.hitCount);
+
     this.activeStepIndex = step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
     this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
     this.setFormPreview(this.activeStepIndex);
@@ -110,6 +128,10 @@ export class MultiStepFormComponent implements OnInit {
 
   onFormSubmit(): void {
     this.formSubmit.emit(this.formData);
+    this._questionService.postSurveyData(this.question as Question).subscribe(res => {
+      console.log(res);
+      this.surveyResponse = res;
+    });
   }
 
   trackByFn(index: number): number {
