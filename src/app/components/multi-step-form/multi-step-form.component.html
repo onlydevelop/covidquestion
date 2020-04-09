@@ -37,7 +37,6 @@
                                 >{{ option.name }}</option>
                             </select>
                         </ng-container>
-
                         <ng-container *ngSwitchCase="'checkbox'">
                                 <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn; let i = index">
                                     <div class="form-control">
@@ -53,11 +52,13 @@
                         <ng-container *ngSwitchCase="'radio'">
                             <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn">
                                 <div class="form-control">
-                                        <input type="radio" [value]="option.code" [formControlName]="field" required>
-                                        <span class="mr-4"></span>
-                                        <div class="d-inline">
-                                            {{ option.name }}
+                                    <div class="row">
+                                        <div class="col-sm-10 d-inline" (click)="onDivClick(i, field, option.code)">
+                                            <input type="radio" [id]="option.code" [value]="option.code" [formControlName]="field">
+                                            <span class="mr-4"></span>
+                                                {{ option.name }}
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </ng-container>
