@@ -73,13 +73,11 @@ export class MultiStepFormComponent implements OnInit {
   buildForm(currentFormContent: any): FormGroup {
     const formDetails = Object.keys(currentFormContent).reduce(
       (obj, key) => {
-        console.log(key);
         obj[key] = ['', this.getValidators(currentFormContent[key])];
         return obj;
       },
       {}
     );
-console.log(formDetails);
     return this._formBuilder.group(formDetails);
   }
 
@@ -204,5 +202,9 @@ console.log(formDetails);
       }
     }
     console.log(this.cmDetails);
+  }
+
+  onDivClick(i, field, code) {
+    this.masterForm[i].controls[field].setValue(code);
   }
 }
