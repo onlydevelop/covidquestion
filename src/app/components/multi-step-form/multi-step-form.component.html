@@ -1,4 +1,4 @@
-<div id="container" class="mu-4">
+<div id="container" class="mu-4" >
     <nav class="navbar static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -6,13 +6,13 @@
             </a>
         </div>
     </nav>
-    <div class="progress">
+    <div class="progress" *ngIf="!showSpeedometer">
         <span class="mr-4">Completion: </span><div class="progress-bar progress-bar-striped bg-primary" role="progressbar" [style.width]="progress" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <ng-container *ngFor="let form of masterForm; let i = index; trackBy: trackByFn">
         <form action="" [formGroup]="masterForm[i]" *ngIf="i === activeStepIndex || masterForm.length === 1">
             <div class="card card-body" >
-                <div class="fields-container">
+                <div class="fields-container" >
                     <div
                     *ngFor="let field of formFields[i]; trackBy: trackByFn"
                     [ngSwitch]="currentFormContent[i][field].type"
@@ -24,7 +24,7 @@
                                 <textarea class="form-control"
                                 [id]="field"
                                 [formControlName]="field"
-                                [placeholder]="currentFormContent[i][field].placeholder"></textarea>
+                                [placeholder]="currentFormContent[i][field].placeholder" required></textarea>
                             </div>
                         </ng-container>
 
@@ -41,7 +41,7 @@
                         <ng-container *ngSwitchCase="'checkbox'">
                                 <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn; let i = index">
                                     <div class="form-control">
-                                            <input type="checkbox" [value]="option.code" [id]="i" [formControlName]="field" (change)="getSelectedCheckboxes($event)">
+                                            <input type="checkbox" [value]="option.code" [id]="i" [formControlName]="field" (change)="getSelectedCheckboxes($event, option.lexical)" required>
                                             <span class="mr-4"></span>
                                             <div class="d-inline">
                                                 {{ option.name }}
@@ -53,7 +53,7 @@
                         <ng-container *ngSwitchCase="'radio'">
                             <div class="form-group" *ngFor="let option of currentFormContent[i][field].options; trackBy: trackByFn">
                                 <div class="form-control">
-                                        <input type="radio" [value]="option.code" [formControlName]="field">
+                                        <input type="radio" [value]="option.code" [formControlName]="field" required>
                                         <span class="mr-4"></span>
                                         <div class="d-inline">
                                             {{ option.name }}
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div
+                <!-- <div
                     class="preview-container"
                     *ngIf="activeStepIndex === stepItems.length - 1 && !showSpeedometer">
                     <ul>
@@ -96,15 +96,56 @@
                         <span>{{ formData[field] || 'N/A' }}</span>
                     </li>
                     </ul>
-                </div>
+                </div> -->
 
                 <div *ngIf="showSpeedometer">
                     <div class="d-flex justify-content-center text-secondary">
-                        <h1>Risk: <em>{{ surveyResponse.risk }}</em></h1>
+                        <h1>Risk: <span [style.color] = "riskColor">{{ riskFactor }}</span></h1>
+                       
                     </div>
+                    <strong>You are at high risk. Do not let your guards down.</strong>
+                    <p>1. If you develop any of the following symptoms (Fever, dry cough, loss of smell or taste, tiredness, body ache, pain in chest). Please call the Toll Free number 1075 or <a target="_blank" href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                        <circle cx="8" cy="4.5" r="1"/>
+                      </svg></a>	</p>
+
+                    <p>2. If you are above the age of 60, do not go out for your own safety. </p>
+                            
+                    <p>3. Maintain safe distance from people (even family members) who seem to be sick.</p>
+                            
+                    <p>4. If you are into essential services wear Personal Protective Equipment (PPE) at work.For more information, you can check:
+                            <a target="_blank" href="https://apps.who.int/iris/bitstream/handle/10665/331498/WHO-2019-nCoV-IPCPPE_use-2020.2-eng.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                <circle cx="8" cy="4.5" r="1"/>
+                              </svg></a>
+                    </p>
+                    <strong>General Advisory</strong>
+                    <p>1. Wash your hands properly link  <a target="_blank" href="https://www.mohfw.gov.in/pdf/Poster3GHFGA.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                        <circle cx="8" cy="4.5" r="1"/>
+                      </svg></a>	</p>
+                      <img src="assets/img/image1.jpg" alt="" height="30%" width="100%">
+                    <p>2. If you are feeling unwell, avoid going out and try to distance yourself from the people you live with, especially elderlies or kids. Maintain physical distancing <a target="_blank" href="https://www.mohfw.gov.in/pdf/socialdistancingEnglish.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                        <circle cx="8" cy="4.5" r="1"/>
+                      </svg></a>                        </p>
+                            
+                    <p>3. Maintain good respiratory hygiene, like, cover your face when you cough, sneeze into your elbows or wear a mask in public. </p>
+                            
+                    <p>4. Take care of your mental health. Call Toll Free 08046110007. More information at: 													
+                            <a target="_blank" href="https://www.mohfw.gov.in/pdf/MindingourmindsduringCoronaeditedat.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                <circle cx="8" cy="4.5" r="1"/>
+                              </svg></a>
+                    </p>
                 </div>
 
-                <div class="button-container" *ngIf="!showSpeedometer">
+                <div class="button-container" *ngIf="!showSpeedometer && activeStepIndex < stepItems.length - 1">
                     <button
                     type="button"
                     [class]="activeStepIndex ? 'btn btn-primary' : 'btn btn-secondary'"
@@ -112,27 +153,31 @@
                     (click)="goToStep('prev')"
                     >Previous</button>
                     <button
-                    *ngIf="activeStepIndex === stepItems.length - 1"
+                    *ngIf="activeStepIndex === stepItems.length - 2"
                     type="button"
                     class="btn btn-info"
-                    (click)="onFormSubmit()"
+                    [disabled]="masterForm[i].invalid"
+                    (click)="goToStep('next');onFormSubmit();"
                     >Submit</button>
                     <button
+                    *ngIf="activeStepIndex !== stepItems.length - 2"
                     type="button"
-                    [class]="activeStepIndex === stepItems.length - 1 ? 'btn btn-secondary' : 'btn btn-primary'"
-                    [disabled]="activeStepIndex === stepItems.length - 1 || masterForm[i].invalid"
+                    [class]="activeStepIndex === stepItems.length - 2 ? 'btn btn-secondary' : 'btn btn-primary'"
+                    [disabled]="activeStepIndex === stepItems.length - 2 || masterForm[i].invalid"
                     (click)="goToStep('next')"
                     >Next</button>
                 </div>
 
-                <div>
+                <!-- <div>
                     <hr/>
                     <div class="d-flex justify-content-center text-secondary">Total Visitors to the site: <em>{{ hitCount.visits }}</em></div>
                     <div class="d-flex justify-content-center text-secondary">Total Surveys taken: <em>{{ hitCount.surveys }}</em></div>
-                </div>
+                </div> -->
             </div>
         </form>
     </ng-container>
 </div>
+
+
 
 

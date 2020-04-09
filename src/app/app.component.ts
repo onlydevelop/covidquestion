@@ -11,10 +11,12 @@ export class AppComponent implements OnInit  {
   formContent: any;
   formData: any;
   activeStepIndex: number;
+  firstPage: boolean;
 
   ngOnInit(): void {
     this.formContent = STEP_ITEMS;
     this.formData = {};
+    this.firstPage = true;
   }
 
   onFormSubmit(formData: any): void {
@@ -23,4 +25,9 @@ export class AppComponent implements OnInit  {
     // post form data here
     // alert(JSON.stringify(this.formData));
   }
+   
+  toSurvey(): void {
+    this.firstPage = false;
+  }
+  
 }

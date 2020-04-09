@@ -1,5 +1,12 @@
-  <app-multi-step-form
-    class="multi-step-form"
-    [formContent]="formContent"
-    (formSubmit)="onFormSubmit($event)"
-  ></app-multi-step-form>
+<app-multi-step-form
+*ngIf="!firstPage"
+class="multi-step-form"
+[firstPage]="firstPage"
+[formContent]="formContent"
+(formSubmit)="onFormSubmit($event)"
+></app-multi-step-form>
+<nav *ngIf="firstPage">
+    <img src="assets/img/b.png" alt="" height="30%" width="100%">
+  <a class="pull-left" target="_blank" href="javascript:void(0);" >Read docs</a>
+  <a class="pull-right" href="javascript:void(0);" (click)="toSurvey()">Take me to survey</a>
+</nav>

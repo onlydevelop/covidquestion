@@ -21,13 +21,14 @@ const GENDER_LIST = [
 ];
 
 const DISEASE_LIST = [
-    { name: 'Cardio-Vascular Diseases (Heart Problem)', code: '1' },
-    { name: 'Renal Diseases (Issues with Kidney)', code: '2' },
-    { name: 'Diabetes', code: '3' },
-    { name: 'Respiratory Disease Chronic Obstructive Pulomary Disease (Emphysema, Bronchitis) / Asthma,lung cancer', code: '4' },
-    { name: 'Tuberculosis', code: '5' },
-    { name: 'Cancer (in last 5 years) (Except lung cancer)', code: '6' },
-    { name: 'Hypertension', code: '7' },
+    { name: 'Cardio-Vascular Diseases (Heart Problem)', code: '1', lexical: 'CVD' },
+    { name: 'Renal Diseases (Issues with Kidney)', code: '2', lexical: 'RENAL'},
+    { name: 'Diabetes', code: '3', lexical: 'DIAB'},
+    { name: 'Respiratory Disease Chronic Obstructive Pulomary Disease (Emphysema, Bronchitis) / Asthma,lung cancer', code: '4', lexical: 'RESP'},
+    { name: 'Tuberculosis', code: '5', lexical: 'TBCL'},
+    { name: 'Cancer (in last 5 years) (Except lung cancer)', code: '6', lexical: 'CANC'},
+    { name: 'Hypertension', code: '7', lexical: 'HYPRTNSN'},
+    { name: 'None of these', code: '8', lexical: 'None'},
 ];
 
 const SMOKER_LIST = [
@@ -43,7 +44,7 @@ const BE_LIST = [
 
 const BE_LIST_1 = [
     { name: 'Not very', code: '3' },
-    { name: 'a little bit', code: '2' },
+    { name: 'A little bit', code: '2' },
     { name: 'Very much', code: '1' }
 ];
 
@@ -68,9 +69,9 @@ const EXPOSURE_OCCUPATION_LIST = [
 ];
 
 const EXPOSURE_CONTAGION_LIST = [
-    { name: 'a) Both (b) & (c)', code: '4' },
-    { name: 'b) I attended a public meeting / conference / religious congregation / party / wedding / any such mass gathering in the last 14 days', code: '3' },
-    { name: 'c) I travelled in the last 14 days by air or train, or bus or public transport (Metro) or chauffeur driven car', code: '2' },
+    { name: 'a) I attended a public meeting / conference / religious congregation / party / wedding / any such mass gathering in the last 14 days', code: '3' },
+    { name: 'b) I travelled in the last 14 days by air or train, or bus or public transport (Metro) or chauffeur driven car', code: '2' },
+    { name: 'c) Both (a) & (b)', code: '4' },
     { name: 'd) None of these', code: '1' }
 ];
 
@@ -109,17 +110,6 @@ STEP_ITEMS.push({label: 'Personal Details: Age', data: {
     }
 });
 
-STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
-    Cm: {
-        type: 'checkbox',
-        options: DISEASE_LIST,
-        validations: {},
-        errors: {},
-        placeholder: 'Existing Diseases'
-      }
-    }
-});
-
 STEP_ITEMS.push({label: 'Personal Details: Gender', data: {
     G: {
         type: 'radio',
@@ -138,6 +128,17 @@ STEP_ITEMS.push({label: 'Personal Details: Smoking Habits', data: {
         validations: {},
         errors: {},
         placeholder: 'Do you smoke?'
+      }
+    }
+});
+
+STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
+    Cm: {
+        type: 'checkbox',
+        options: DISEASE_LIST,
+        validations: {},
+        errors: {},
+        placeholder: 'Existing Diseases'
       }
     }
 });

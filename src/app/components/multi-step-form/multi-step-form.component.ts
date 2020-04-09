@@ -12,15 +12,18 @@ import { SurveyResponse } from 'src/app/models/SurveyResponse';
 })
 export class MultiStepFormComponent implements OnInit {
   @Input() formContent: any;
-
+  @Input() firstPage: any;
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   activeStepIndex: number;
   currentFormContent: Array<any>;
+  checkValue: Array<any>;
   formData: any;
+  position: any;
   formFields: Array<Array<string>>;
   masterFormFields: Array<string>;
   stepItems: Array<any>;
+  cmDetails: any;
   masterForm: Array<FormGroup>;
   progress: string;
   checkboxCount: number;
@@ -28,6 +31,8 @@ export class MultiStepFormComponent implements OnInit {
   hitCount: HitCount;
   question: Question;
   surveyResponse: SurveyResponse;
+  riskFactor: string;
+  riskColor: string;
   showSpeedometer: boolean;
 
   constructor(
@@ -46,12 +51,15 @@ export class MultiStepFormComponent implements OnInit {
     this.activeStepIndex = 0;
     this.progress = '0%';
     this.masterForm = [];
+    this.cmDetails = {};
     this.currentFormContent = [];
     this.formFields = [];
     this.stepItems = this.formContent;
     this.checkboxCount = 0;
     this.cmValue = 1;
     this.surveyResponse = null;
+    this.riskFactor = null;
+    this.riskColor = null;
     this.showSpeedometer = false;
 
     this.stepItems.forEach((data, i) => {
@@ -65,13 +73,13 @@ export class MultiStepFormComponent implements OnInit {
   buildForm(currentFormContent: any): FormGroup {
     const formDetails = Object.keys(currentFormContent).reduce(
       (obj, key) => {
+        console.log(key);
         obj[key] = ['', this.getValidators(currentFormContent[key])];
-
         return obj;
       },
       {}
     );
-
+console.log(formDetails);
     return this._formBuilder.group(formDetails);
   }
 
@@ -105,8 +113,13 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   setFormPreview(activeStepIndex: number): void {
-    let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
-    if(controlName === 'Cm') {
+    let controlName = false;
+    if(this.activeStepIndex === this.stepItems.length-2){
+      let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
+    } else {
+      
+    }
+    if(controlName && controlName === 'Cm') {
       this.masterForm[activeStepIndex].controls['Cm'].setValue(false);
       this.cmValue = 1;
       this.checkboxCount = 0;
@@ -124,22 +137,72 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-    this.formSubmit.emit(this.formData);
-    this._questionService.postSurveyData(this.question as Question).subscribe(res => {
-      this.surveyResponse = res;
-      this.showSpeedometer = true;
-    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        //return position;
+        console.log(position);
+        this.formData['position'] = {latitude:position.coords.latitude, longitude: position.coords.longitude, accuracy: position.coords.accuracy};
+        this.formData['cmDetails'] = this.cmDetails;
+        this.formSubmit.emit(this.formData);
+        this._questionService.postSurveyData(this.formData as Question).subscribe(res => {
+          this.surveyResponse = res;
+          if(this.surveyResponse.risk >= 7){
+            this.riskFactor = 'High';
+            this.riskColor = 'red';            
+          } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
+            this.riskFactor = 'Medium';
+            this.riskColor = 'yellow';            
+          } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
+            this.riskFactor = 'Low';
+            this.riskColor = 'green';
+          }
+          this.showSpeedometer = true;
+        });
+      }, err => {
+        this.formData['position'] = {};
+        this.formData['cmDetails'] = this.cmDetails;
+        this.formSubmit.emit(this.formData);
+        this._questionService.postSurveyData(this.formData as Question).subscribe(res => {
+          this.surveyResponse = res;
+          if(this.surveyResponse.risk >= 7){
+            this.riskFactor = 'High';
+            this.riskColor = 'red';            
+          } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
+            this.riskFactor = 'Medium';
+            this.riskColor = 'yellow';            
+          } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
+            this.riskFactor = 'Low';
+            this.riskColor = 'green';
+          }
+          this.showSpeedometer = true;
+        });
+      });
+    }
+    
   }
 
   trackByFn(index: number): number {
     return index;
   }
 
-  getSelectedCheckboxes(e) {
+  getSelectedCheckboxes(e, code) {
     this.checkboxCount = e.target.checked ? this.checkboxCount + 1 : this.checkboxCount - 1;
     if(this.checkboxCount > 2) this.cmValue = 4;
     else if (this.checkboxCount === 2) this.cmValue = 3;
     else if (this.checkboxCount === 1) this.cmValue = 2;
     else this.cmValue = 1;
+    if(e.target.checked){
+      this.cmDetails[code] = true;
+    } else {
+      this.cmDetails[code] = false;
+    }
+    if(code == 'None'){
+      for(var key in this.cmDetails){
+        if(key !== 'None'){
+          this.cmDetails[key] = false;
+        }
+      }
+    }
+    console.log(this.cmDetails);
   }
 }

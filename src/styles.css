@@ -20,3 +20,64 @@
   .text-bold {
     font-weight: bold;
   }
+  nav.navbar.static-top {
+    padding: 0 !important;
+}
+nav.navbar.static-top .container {
+    padding: 0;
+    margin: 0;
+}
+nav.navbar.static-top a.navbar-brand {
+    padding: 0;
+    margin: 0 0 30px;
+}
+nav.navbar.static-top a.navbar-brand img {
+    width: 100%;
+}
+
+.progress {
+    display: flex;
+    height: auto !important;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: 0;
+    padding: 20px;
+}
+.full-width, .button-container, .form-details-list {
+    max-width: 100%;
+}
+.d-flex.justify-content-center.text-secondary em {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    font-style: normal;
+    background: #dedede;
+    margin-left: 10px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+.card-body .fields-container .form-control{
+    height: auto;
+}
+.card-body .fields-container .form-control .d-inline {
+    width: 90%;
+    display: inline-block !important;
+    vertical-align: middle;
+}
+.fields-container input#name {
+    width: 100%;
+    padding: 6px 10px;
+}
+body {
+    background: linear-gradient(360deg, #5ebabb 1%,#6cd379 100%);
+    background: linear-gradient(360deg, #5ebabb 1%,#6cd379 100%);
+}
+.card {
+    background: transparent !important;
+}
