@@ -150,7 +150,7 @@ console.log(formDetails);
             this.riskFactor = 'High';
             this.riskColor = 'red';            
           } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
-            this.riskFactor = 'Medium';
+            this.riskFactor = 'Moderate';
             this.riskColor = 'yellow';            
           } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
             this.riskFactor = 'Low';
@@ -168,7 +168,7 @@ console.log(formDetails);
             this.riskFactor = 'High';
             this.riskColor = 'red';            
           } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
-            this.riskFactor = 'Medium';
+            this.riskFactor = 'Moderate';
             this.riskColor = 'yellow';            
           } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
             this.riskFactor = 'Low';

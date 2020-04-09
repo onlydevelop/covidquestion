@@ -103,24 +103,52 @@
                         <h1>Risk: <span [style.color] = "riskColor">{{ riskFactor }}</span></h1>
                        
                     </div>
-                    <strong>You are at high risk. Do not let your guards down.</strong>
-                    <p>1. If you develop any of the following symptoms (Fever, dry cough, loss of smell or taste, tiredness, body ache, pain in chest). Please call the Toll Free number 1075 or <a target="_blank" href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-                        <circle cx="8" cy="4.5" r="1"/>
-                      </svg></a>	</p>
-
-                    <p>2. If you are above the age of 60, do not go out for your own safety. </p>
-                            
-                    <p>3. Maintain safe distance from people (even family members) who seem to be sick.</p>
-                            
-                    <p>4. If you are into essential services wear Personal Protective Equipment (PPE) at work.For more information, you can check:
-                            <a target="_blank" href="https://apps.who.int/iris/bitstream/handle/10665/331498/WHO-2019-nCoV-IPCPPE_use-2020.2-eng.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <div *ngIf="riskFactor == 'High'">
+                            <strong>You are at high risk. Do not let your guards down.</strong>
+                            <p>1. If you develop any of the following symptoms (Fever, dry cough, loss of smell or taste, tiredness, body ache, pain in chest). Please call the Toll Free number 1075 or <a target="_blank" href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
                                 <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
                                 <circle cx="8" cy="4.5" r="1"/>
-                              </svg></a>
-                    </p>
+                              </svg></a>	</p>
+        
+                            <p>2. If you are above the age of 60, do not go out for your own safety. </p>
+                                    
+                            <p>3. Maintain safe distance from people (even family members) who seem to be sick.</p>
+                                    
+                            <p>4. If you are into essential services wear Personal Protective Equipment (PPE) at work.For more information, you can check:
+                                    <a target="_blank" href="https://apps.who.int/iris/bitstream/handle/10665/331498/WHO-2019-nCoV-IPCPPE_use-2020.2-eng.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                        <circle cx="8" cy="4.5" r="1"/>
+                                      </svg></a>
+                            </p>
+                    </div>
+                    <div *ngIf="riskFactor == 'Moderate'">
+                            <strong>You are at a moderate risk. Remain watchful.</strong>
+                            <p>1. If you develop any of the following symptoms (Fever, dry cough, loss of smell or taste, tiredness, body ache, pain in chest). Please call the Toll Free number 1075 or <a target="_blank" href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                <circle cx="8" cy="4.5" r="1"/>
+                              </svg></a>	</p>     
+                            <p>2. If you are into essential services wear Personal Protective Equipment (PPE) at work.For more information, you can check:
+                                    <a target="_blank" href="https://apps.who.int/iris/bitstream/handle/10665/331498/WHO-2019-nCoV-IPCPPE_use-2020.2-eng.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                        <circle cx="8" cy="4.5" r="1"/>
+                                      </svg></a>
+                            </p>
+                            <p>3. 3. Refrain from going outside (shops, markets) unless it is very necessary. </p>
+                    </div>
+                    <div *ngIf="riskFactor == 'Low'">
+                            <strong>You are at low risk but consider safety first.</strong>
+                            <p>1. If you develop any of the following symptoms (Fever, dry cough, loss of smell or taste, tiredness, body ache, pain in chest). Please call the Toll Free number 1075 or <a target="_blank" href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                <circle cx="8" cy="4.5" r="1"/>
+                              </svg></a>	</p>     
+                            <p>2. Avoid going out unless it is very essential.	
+                                </p>
+                    </div>
                     <strong>General Advisory</strong>
                     <p>1. Wash your hands properly link  <a target="_blank" href="https://www.mohfw.gov.in/pdf/Poster3GHFGA.pdf" ><svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
