@@ -1,3 +1,4 @@
+import { states } from './states.json';
 const LANGUAGES_LIST = [
     { name: 'English', code: 'english' },
     { name: 'मराठी', code: 'marathi' },
@@ -91,6 +92,35 @@ STEP_ITEMS.push({label: 'Select Language', data: {
         errors: {},
         placeholder: 'Choose your language'
       }
+    }
+});
+var stateList = states.map(state => {
+    return state.state;
+});
+STEP_ITEMS.push({label: 'Select State', data: {
+    state: {
+        type: 'select',
+        options: stateList,
+        validations: {},
+        errors: {},
+        placeholder: 'Choose your state'
+      }
+    }
+});
+
+STEP_ITEMS.push({label: 'Select District', data: {
+    district: {
+        type: 'select',
+
+        validations: {},
+        errors: {},
+        placeholder: 'Choose your district'
+      }
+    }
+});
+
+STEP_ITEMS.push({label: 'Pincode', data: {
+    pincode: { type: 'text', validations: {}, errors: {}, placeholder: 'Pincode' }
     }
 });
 

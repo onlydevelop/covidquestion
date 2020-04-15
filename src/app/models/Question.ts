@@ -1,5 +1,7 @@
 export interface Question {
     Language: string,
+    State: string,
+    District: string,
     Name: string,
     A: number,
     Cm: number,

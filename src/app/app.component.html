@@ -6,7 +6,10 @@ class="multi-step-form"
 (formSubmit)="onFormSubmit($event)"
 ></app-multi-step-form>
 <nav *ngIf="firstPage">
-    <img src="assets/img/b.png" alt="" height="30%" width="100%">
-  <a class="pull-left" target="_blank" href="javascript:void(0);" >Read docs</a>
-  <a class="pull-right" href="javascript:void(0);" (click)="toSurvey()">Take me to survey</a>
+    <img src="assets/img/mob.png" class="fullimg" alt="" >
+    <div class="btnWraper ">
+        <a class="pull-left" target="_blank" href="https://d1bo30h54isobh.cloudfront.net/assets/img/Covid_19_Risk_Assessment_Tool_about.pdf" >About the Tool</a>
+        <a class="pull-right" href="javascript:void(0);" (click)="toSurvey()">Take me to survey</a>
+    </div>
+  
 </nav>

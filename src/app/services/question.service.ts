@@ -23,7 +23,7 @@ const options = {
 export class QuestionService {
 
   backendHitCountUrl: string = 'https://bqpixjrvk9.execute-api.ap-south-1.amazonaws.com/dev/getHitCount';
-  backendSurveyPostUrl: string = 'https://bqpixjrvk9.execute-api.ap-south-1.amazonaws.com/dev/submitSurvey';
+  backendSurveyPostUrl: string = 'https://0n7a56p8dk.execute-api.ap-south-1.amazonaws.com/v1/submitsurveydata';
 
   hitCount: HitCount;
   question: Question;

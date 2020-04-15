@@ -4,6 +4,7 @@ import { QuestionService } from '../../services/question.service';
 import { HitCount } from 'src/app/models/HitCount';
 import { Question } from 'src/app/models/Question';
 import { SurveyResponse } from 'src/app/models/SurveyResponse';
+import { states } from '../../constants/states.json';
 
 @Component({
   selector: 'app-multi-step-form',
@@ -15,6 +16,7 @@ export class MultiStepFormComponent implements OnInit {
   @Input() firstPage: any;
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
+  states: any;
   activeStepIndex: number;
   currentFormContent: Array<any>;
   checkValue: Array<any>;
@@ -47,8 +49,9 @@ export class MultiStepFormComponent implements OnInit {
         surveys: hitCount.surveys
       }
     });
-
+    console.log(this.formContent);
     this.activeStepIndex = 0;
+    this.states = states;
     this.progress = '0%';
     this.masterForm = [];
     this.cmDetails = {};
@@ -63,6 +66,7 @@ export class MultiStepFormComponent implements OnInit {
     this.showSpeedometer = false;
 
     this.stepItems.forEach((data, i) => {
+      console.log(data);
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
       this.formFields.push(Object.keys(this.currentFormContent[i])); // holds string values for each field of all steps
       this.masterForm.push(this.buildForm(this.currentFormContent[i])); // holds all form groups
@@ -71,6 +75,7 @@ export class MultiStepFormComponent implements OnInit {
 
   // build separate FormGroups for each form
   buildForm(currentFormContent: any): FormGroup {
+   // console.log(currentFormContent);
     const formDetails = Object.keys(currentFormContent).reduce(
       (obj, key) => {
         obj[key] = ['', this.getValidators(currentFormContent[key])];
@@ -106,11 +111,30 @@ export class MultiStepFormComponent implements OnInit {
 
   goToStep(step: string): void {
     this.activeStepIndex = step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
+    // if(this.currentFormContent[this.activeStepIndex] && this.currentFormContent[this.activeStepIndex].hasOwnProperty('district')){
+    //   var filtered = this.states.filter(state => {
+    //     return state.state == this.formData['state'];
+    //   });
+    //   this.currentFormContent[this.activeStepIndex]['district'].options = filtered[0].districts;
+    // }
     this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
     this.setFormPreview(this.activeStepIndex);
   }
 
+  getDistricts(e, type): void {
+    var selectedState = this.masterForm[this.activeStepIndex].controls['state'].value;
+    if(type == 'state'){
+      if(this.currentFormContent[this.activeStepIndex+1] && this.currentFormContent[this.activeStepIndex+1].hasOwnProperty('district')){
+        var filtered = this.states.filter(state => {
+          return state.state == selectedState;
+        });
+        this.currentFormContent[this.activeStepIndex+1]['district'].options = filtered[0].districts;
+      } 
+    }
+  }
+
   setFormPreview(activeStepIndex: number): void {
+    
     let controlName = false;
     if(this.activeStepIndex === this.stepItems.length-2){
       let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
@@ -118,6 +142,7 @@ export class MultiStepFormComponent implements OnInit {
       
     }
     if(controlName && controlName === 'Cm') {
+      console.log(this.masterForm[activeStepIndex].controls['Cm']);
       this.masterForm[activeStepIndex].controls['Cm'].setValue(false);
       this.cmValue = 1;
       this.checkboxCount = 0;
