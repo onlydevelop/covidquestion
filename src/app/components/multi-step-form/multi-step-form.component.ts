@@ -47,7 +47,7 @@ export class MultiStepFormComponent implements OnInit {
       this.hitCount = {
         visits: hitCount.visits,
         surveys: hitCount.surveys
-      }
+      };
     });
     console.log(this.formContent);
     this.activeStepIndex = 0;
@@ -75,26 +75,25 @@ export class MultiStepFormComponent implements OnInit {
 
   // build separate FormGroups for each form
   buildForm(currentFormContent: any): FormGroup {
-   // console.log(currentFormContent);
-    const formDetails = Object.keys(currentFormContent).reduce(
-      (obj, key) => {
-        obj[key] = ['', this.getValidators(currentFormContent[key])];
-        return obj;
-      },
-      {}
-    );
+    // console.log(currentFormContent);
+    const formDetails = Object.keys(currentFormContent).reduce((obj, key) => {
+      obj[key] = ['', this.getValidators(currentFormContent[key])];
+      return obj;
+    }, {});
     return this._formBuilder.group(formDetails);
   }
 
   // get validator(s) for each field, if any
   getValidators(formField: any): Validators {
-    const fieldValidators = Object.keys(formField.validations).map(validator => {
-      if (validator === 'required') {
-        return Validators[validator];
-      } else {
-        return Validators[validator](formField.validations[validator]);
+    const fieldValidators = Object.keys(formField.validations).map(
+      validator => {
+        if (validator === 'required') {
+          return Validators[validator];
+        } else {
+          return Validators[validator](formField.validations[validator]);
+        }
       }
-    });
+    );
 
     return fieldValidators;
   }
@@ -110,38 +109,47 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   goToStep(step: string): void {
-    this.activeStepIndex = step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
+    this.activeStepIndex =
+      step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
     // if(this.currentFormContent[this.activeStepIndex] && this.currentFormContent[this.activeStepIndex].hasOwnProperty('district')){
     //   var filtered = this.states.filter(state => {
     //     return state.state == this.formData['state'];
     //   });
     //   this.currentFormContent[this.activeStepIndex]['district'].options = filtered[0].districts;
     // }
-    this.progress = Math.ceil(( this.activeStepIndex / this.stepItems.length ) * 100) + '%';
+    this.progress =
+      Math.ceil((this.activeStepIndex / this.stepItems.length) * 100) + '%';
     this.setFormPreview(this.activeStepIndex);
   }
 
   getDistricts(e, type): void {
-    var selectedState = this.masterForm[this.activeStepIndex].controls['state'].value;
-    if(type == 'state'){
-      if(this.currentFormContent[this.activeStepIndex+1] && this.currentFormContent[this.activeStepIndex+1].hasOwnProperty('district')){
+    var selectedState = this.masterForm[this.activeStepIndex].controls['state']
+      .value;
+    if (type == 'state') {
+      if (
+        this.currentFormContent[this.activeStepIndex + 1] &&
+        this.currentFormContent[this.activeStepIndex + 1].hasOwnProperty(
+          'district'
+        )
+      ) {
         var filtered = this.states.filter(state => {
           return state.state == selectedState;
         });
-        this.currentFormContent[this.activeStepIndex+1]['district'].options = filtered[0].districts;
-      } 
+        this.currentFormContent[this.activeStepIndex + 1]['district'].options =
+          filtered[0].districts;
+      }
     }
   }
 
   setFormPreview(activeStepIndex: number): void {
-    
     let controlName = false;
-    if(this.activeStepIndex === this.stepItems.length-2){
-      let controlName = Object.keys(this.masterForm[activeStepIndex].controls)[0];
+    if (this.activeStepIndex === this.stepItems.length - 2) {
+      let controlName = Object.keys(
+        this.masterForm[activeStepIndex].controls
+      )[0];
     } else {
-      
     }
-    if(controlName && controlName === 'Cm') {
+    if (controlName && controlName === 'Cm') {
       console.log(this.masterForm[activeStepIndex].controls['Cm']);
       this.masterForm[activeStepIndex].controls['Cm'].setValue(false);
       this.cmValue = 1;
@@ -161,70 +169,104 @@ export class MultiStepFormComponent implements OnInit {
 
   onFormSubmit(): void {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        //return position;
-        console.log(position);
-        this.formData['position'] = {latitude:position.coords.latitude, longitude: position.coords.longitude, accuracy: position.coords.accuracy};
-        this.formData['cmDetails'] = this.cmDetails;
-        this.formSubmit.emit(this.formData);
-        this._questionService.postSurveyData(this.formData as Question).subscribe(res => {
-          this.surveyResponse = res;
-          if(this.surveyResponse.risk >= 7){
-            this.riskFactor = 'High';
-            this.riskColor = 'red';            
-          } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
-            this.riskFactor = 'Moderate';
-            this.riskColor = 'yellow';            
-          } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
-            this.riskFactor = 'Low';
-            this.riskColor = 'green';
-          }
-          this.showSpeedometer = true;
-        });
-      }, err => {
-        this.formData['position'] = {};
-        this.formData['cmDetails'] = this.cmDetails;
-        this.formSubmit.emit(this.formData);
-        this._questionService.postSurveyData(this.formData as Question).subscribe(res => {
-          this.surveyResponse = res;
-          if(this.surveyResponse.risk >= 7){
-            this.riskFactor = 'High';
-            this.riskColor = 'red';            
-          } else if (this.surveyResponse.risk >= 4.2 && this.surveyResponse.risk < 7){
-            this.riskFactor = 'Moderate';
-            this.riskColor = 'yellow';            
-          } else if (this.surveyResponse.risk >= 2.5 && this.surveyResponse.risk < 4.2){
-            this.riskFactor = 'Low';
-            this.riskColor = 'green';
-          }
-          this.showSpeedometer = true;
-        });
-      });
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          //return position;
+          console.log(position);
+          this.formData['position'] = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            accuracy: position.coords.accuracy
+          };
+          this.formData['cmDetails'] = this.cmDetails;
+          this.formSubmit.emit(this.formData);
+          this._questionService
+            .postSurveyData(this.formData as Question)
+            .subscribe(res => {
+              this.surveyResponse = res;
+              if (this.surveyResponse.risk >= 7) {
+                this.riskFactor = 'High';
+                this.riskColor = 'red';
+              } else if (
+                this.surveyResponse.risk >= 4.2 &&
+                this.surveyResponse.risk < 7
+              ) {
+                this.riskFactor = 'Moderate';
+                this.riskColor = 'yellow';
+              } else if (
+                this.surveyResponse.risk >= 2.5 &&
+                this.surveyResponse.risk < 4.2
+              ) {
+                this.riskFactor = 'Low';
+                this.riskColor = 'green';
+              }
+              this.showSpeedometer = true;
+            });
+        },
+        err => {
+          this.formData['position'] = {};
+          this.formData['cmDetails'] = this.cmDetails;
+          this.formSubmit.emit(this.formData);
+          this._questionService
+            .postSurveyData(this.formData as Question)
+            .subscribe(res => {
+              this.surveyResponse = res;
+              if (this.surveyResponse.risk >= 7) {
+                this.riskFactor = 'High';
+                this.riskColor = 'red';
+              } else if (
+                this.surveyResponse.risk >= 4.2 &&
+                this.surveyResponse.risk < 7
+              ) {
+                this.riskFactor = 'Moderate';
+                this.riskColor = 'yellow';
+              } else if (
+                this.surveyResponse.risk >= 2.5 &&
+                this.surveyResponse.risk < 4.2
+              ) {
+                this.riskFactor = 'Low';
+                this.riskColor = 'green';
+              }
+              this.showSpeedometer = true;
+            });
+        }
+      );
     }
-    
   }
 
   trackByFn(index: number): number {
     return index;
   }
 
-  getSelectedCheckboxes(e, code) {
-    this.checkboxCount = e.target.checked ? this.checkboxCount + 1 : this.checkboxCount - 1;
-    if(this.checkboxCount > 2) this.cmValue = 4;
+  getSelectedCheckboxes(e, code, i, field) {
+    if (this.cmDetails['None']) {
+      e.target.checked = false;
+    }
+    this.checkboxCount = e.target.checked
+      ? this.checkboxCount + 1
+      : this.checkboxCount - 1;
+    if (this.checkboxCount > 2) this.cmValue = 4;
     else if (this.checkboxCount === 2) this.cmValue = 3;
     else if (this.checkboxCount === 1) this.cmValue = 2;
     else this.cmValue = 1;
-    if(e.target.checked){
+    if (e.target.checked) {
       this.cmDetails[code] = true;
     } else {
       this.cmDetails[code] = false;
     }
-    if(code == 'None'){
-      for(var key in this.cmDetails){
-        if(key !== 'None'){
+    if (code == 'None') {
+      let wasChecked = e.target.checked;
+      this.masterForm[i + 1].controls[field].setValue(false);
+      e.target.checked = wasChecked;
+      console.log(this.masterForm[i + 1].controls[field]);
+      for (var key in this.cmDetails) {
+        if (key !== 'None') {
           this.cmDetails[key] = false;
         }
       }
+    }
+    if (this.checkboxCount > 0) {
+      // FIXME: Enable the control or passThrough the validator
     }
     console.log(this.cmDetails);
   }
