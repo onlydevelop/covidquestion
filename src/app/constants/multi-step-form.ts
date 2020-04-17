@@ -1,4 +1,5 @@
-import { states } from './states.json';
+//import { states } from './states.json';
+import { states } from './pincode.json';
 const LANGUAGES_LIST = [
     { name: 'English', code: 'english' },
     { name: 'मराठी', code: 'marathi' },
@@ -55,6 +56,42 @@ const BE_LIST_2 = [
     { name: 'Yes', code: '1' }
 ];
 
+const BE_LIST_3 = [
+    { name: 'No', code: '3' },
+    { name: 'Only when I see others wearing mask', code: '2' },
+    { name: 'Yes', code: '1' }
+];
+
+const BE_LIST_4 = [
+    { name: 'Never', code: '3' },
+    { name: 'Only after returning home', code: '2' },
+    { name: 'Every time I come back home from outside or touch facilities in a public place, or touch currency', code: '1' }
+];
+
+const BE_LIST_5 = [
+    { name: 'Never', code: '3' },
+    { name: 'Sometimes, I touch unknowingly ', code: '2' },
+    { name: 'Always', code: '1' }
+];
+
+const BE_LIST_6 = [
+    { name: 'Never', code: '3' },
+    { name: 'Only when I see others following ', code: '2' },
+    { name: 'Always', code: '1' }
+];
+
+const BE_LIST_7 = [
+    { name: 'A little worried, as my district has no reported case', code: '3' },
+    { name: 'Not very worried, as number of cases are low in my district', code: '2' },
+    { name: 'Very much worried, as positive COVID-19 cases have been reported in my locality', code: '1' }
+];
+
+const BE_LIST_8 = [
+    { name: 'Need new measures to bring it under control', code: '3' },
+    { name: 'The current measures will bring it under control', code: '2' },
+    { name: 'The situation is under control', code: '1' }
+];
+
 const EXPOSURE_STAY_LIST = [
     { name: 'Informal settlement', code: '4' },
     { name: 'Mohalla / Chawl / Shared Accommodation (Hostels, PGs)', code: '3' },
@@ -82,6 +119,18 @@ const SOCIAL_POLICY_LIST = [
     { name: 'Most of the people are following', code: '1' }
 ];
 
+const SOCIAL_POLICY_LIST_1 = [
+    { name: 'All shops are open and public gatherings are allowed', code: '3' },
+    { name: 'Essential services and shops are open, no restriction for community mobility ', code: '2' },
+    { name: 'Only essential services available and restricted community mobility', code: '1' }
+];
+
+const SOCIAL_POLICY_LIST_2 = [
+    { name: 'Most people are following (more than 80%)', code: '3' },
+    { name: 'Some people are following (between 50 to 80%) ', code: '2' },
+    { name: 'Most people are following (more than 80%)', code: '1' }
+];
+
 const STEP_ITEMS = [];
 
 STEP_ITEMS.push({label: 'Select Language', data: {
@@ -94,13 +143,21 @@ STEP_ITEMS.push({label: 'Select Language', data: {
       }
     }
 });
-var stateList = states.map(state => {
-    return state.state;
+// var stateList = states.map(state => {
+//     return state.state;
+// });
+var stateList = Object.keys(states);
+var finalStates = [];
+
+stateList.forEach(state => {
+    if(state && state !== 'NULL'){
+        finalStates.push(state);
+    }
 });
 STEP_ITEMS.push({label: 'Select State', data: {
     state: {
         type: 'select',
-        options: stateList,
+        options: finalStates,
         validations: {},
         errors: {},
         placeholder: 'Choose your state'
@@ -120,7 +177,7 @@ STEP_ITEMS.push({label: 'Select District', data: {
 });
 
 STEP_ITEMS.push({label: 'Pincode', data: {
-    pincode: { type: 'text', validations: {}, errors: {}, placeholder: 'Pincode' }
+    pincode: { type: 'select', validations: {}, errors: {}, placeholder: 'Pincode' }
     }
 });
 
@@ -176,10 +233,10 @@ STEP_ITEMS.push({label: 'Personal Details: Diseases', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be1: {
         type: 'radio',
-        options: BE_LIST,
+        options: BE_LIST_3,
         validations: {},
         errors: {},
-        placeholder: 'Do you use mask or cover your mouth and nose while sneezing or coughing?'
+        placeholder: 'Do you wear mask while going out of your house?'
       }
     }
 });
@@ -187,10 +244,10 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be2: {
         type: 'radio',
-        options: BE_LIST,
+        options: BE_LIST_4,
         validations: {},
         errors: {},
-        placeholder: 'Do you wash your hands after coming home with soap?'
+        placeholder: 'When do you sanities your hands?'
       }
     }
 });
@@ -198,7 +255,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be3: {
         type: 'radio',
-        options: BE_LIST,
+        options: BE_LIST_5,
         validations: {},
         errors: {},
         placeholder: 'Do you sanitise your hand before touching eyes, nose and mouth?'
@@ -209,10 +266,10 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be4: {
         type: 'radio',
-        options: BE_LIST,
+        options: BE_LIST_6,
         validations: {},
         errors: {},
-        placeholder: 'Do you follow the social distancing norm?'
+        placeholder: 'Do you follow the physical distancing norms in public places?'
       }
     }
 });
@@ -220,7 +277,7 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be5: {
         type: 'radio',
-        options: BE_LIST_1,
+        options: BE_LIST_7,
         validations: {},
         errors: {},
         placeholder: 'How anxious are you about the current situation?'
@@ -231,10 +288,10 @@ STEP_ITEMS.push({label: 'Beheavioral Details', data: {
 STEP_ITEMS.push({label: 'Beheavioral Details', data: {
     Be6: {
         type: 'radio',
-        options: BE_LIST_2,
+        options: BE_LIST_8,
         validations: {},
         errors: {},
-        placeholder: 'Is the government capable of handing the COVID-19 outbreak?'
+        placeholder: 'Which of these describes the current COVID-19 response?'
       }     
     }
 });
@@ -275,7 +332,7 @@ STEP_ITEMS.push({label: 'Exposure', data: {
 STEP_ITEMS.push({label: 'Social Policy', data: {
     SP1: {
         type: 'radio',
-        options: SOCIAL_POLICY_LIST,
+        options: SOCIAL_POLICY_LIST_1,
         validations: {},
         errors: {},
         placeholder: 'How effective is lockdown in your locality?'
@@ -286,7 +343,7 @@ STEP_ITEMS.push({label: 'Social Policy', data: {
 STEP_ITEMS.push({label: 'Social Policy', data: {
     SP2: {
         type: 'radio',
-        options: SOCIAL_POLICY_LIST,
+        options: SOCIAL_POLICY_LIST_2,
         validations: {},
         errors: {},
         placeholder: 'Are people wearing mask and following social distancing in your locality?'

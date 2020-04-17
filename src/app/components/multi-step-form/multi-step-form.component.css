@@ -1,8 +1,393 @@
 .field-label {
     font-size: 0.875em;
-  }
-  
-  .validation-error {
+}
+
+.validation-error {
     color: #cc3c3c;
     font-size: 0.750em;
-  }
+}
+
+.padd-0 {
+    padding: 0px;
+}
+
+.fullScreen {
+    height: 100vh;
+}
+
+.top-botm-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* @media only screen and (min-width: 1020px) {
+    .App
+  } */
+
+.btn-primary {
+    background-color: #19325f;
+}
+
+.btn-secondary {
+    background-color: #19325f;
+}
+
+@media (max-width: 480px) {
+    .btn-next-pri {
+        width: 40vw !important;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .btn-next-pri {
+        width: 27vw;
+    }
+}
+
+div.Aldgridcolor>div:nth-of-type(odd) {
+    background: #d8e8fa !important;
+}
+
+.form-control {
+    background: none;
+    border: none;
+}
+
+.selectFormPad {
+    padding: 10px 27px;
+}
+
+.textAearcls input {
+    width: 97%;
+    margin: 10px;
+}
+
+.btn-next-pri {
+    background: #19325f;
+    color: #FFF;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    padding: 0.8rem 2rem;
+    width: 20vw;
+}
+
+.login-heading {
+    background: #19325f;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFF;
+    padding: 10px;
+    border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    border: 0px solid #000000;
+}
+
+.login-wht-box {
+    background: #eaf4ff;
+    padding: 0px;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.37);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.37);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.37);
+    border-radius: 0px 0px 20px 20px;
+    -moz-border-radius: 0px 0px 20px 20px;
+    -webkit-border-radius: 0px 0px 20px 20px;
+    border: 0px solid #000000;
+}
+
+.col-center {
+    float: none;
+    margin: 0 auto
+}
+
+.progressBarHeight {
+    height: 10px;
+    margin-top: 4px;
+    border-radius: 10px;
+}
+
+option:nth-child(even) {
+    background: #eaf4fe
+}
+
+option:nth-child(odd) {
+    background: #d8e7fa
+}
+
+
+/* .alternetclassA:nth-child(even) {background: rgb(219, 115, 115) !important} */
+
+.alternetclassA:nth-child(2n) {
+    background: rgb(219, 115, 115) !important
+}
+
+#main-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 761px) and (max-width: 800px) {
+    .layout-align {
+        width: 84% !important;
+    }
+    #tesla-align {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .extdiv3 {
+        border-left: 153px solid transparent !important;
+        border-right: 133px solid transparent !important;
+        border-bottom: 150px solid #FFCA3D !important;
+    }
+    .extdiv2 {
+        right: -4% !important;
+        width: 120% !important;
+        height: 98% !important;
+        border-top-right-radius: 551px !important;
+    }
+    .extdiv1 {
+        width: 87% !important;
+        height: 82% !important;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1080px) {
+    .layout-align {
+        width: 71% !important;
+    }
+    #tesla-align {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .extdiv3 {
+        border-left: 153px solid transparent !important;
+        border-right: 133px solid transparent !important;
+        border-bottom: 150px solid #FFCA3D !important;
+    }
+    .extdiv2 {
+        right: -4% !important;
+        width: 120% !important;
+        height: 98% !important;
+        border-top-right-radius: 551px !important;
+    }
+    .extdiv1 {
+        width: 87% !important;
+        height: 82% !important;
+    }
+}
+
+@media only screen and (min-width: 761px) {
+    .layout-align {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0 30px 0;
+    }
+    #tesla-align {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .layout-align {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 25px 0 25px 0;
+    }
+    #tesla-align {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0.75);
+    }
+}
+
+
+/* Just for very small screen sizes */
+
+@media only screen and (max-width: 355px) {
+    .layout-align {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 10px 0;
+        transform: scale(0.8);
+    }
+    #tesla-align {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0.60);
+    }
+}
+
+
+/* CSS for 1st Meter */
+
+#score-meter-1 {
+    width: 300px;
+    height: 150px;
+    border-top-left-radius: 360px;
+    border-top-right-radius: 360px;
+    overflow: hidden;
+    position: relative;
+}
+
+#scorer-1-inner-div {
+    position: absolute;
+    left: 20%;
+    top: 40%;
+    width: 60%;
+    height: 60%;
+    border-top-left-radius: 360px;
+    border-top-right-radius: 360px;
+    background-color: #ffffff;
+    z-index: 2;
+}
+
+#scorer-1-inner-div-2 {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 360px;
+    border-top-right-radius: 360px;
+    background-color: #A3CD3B;
+    transform-origin: bottom center;
+    transform: rotate(-130deg);
+    z-index: 0;
+}
+
+#scorer-1-inner-div-3 {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 360px;
+    border-top-right-radius: 360px;
+    background-color: #ff0000;
+    transform-origin: bottom center;
+    transform: rotate(130deg);
+    z-index: 0
+}
+
+#scorer-1-inner-div-4 {
+    position: absolute;
+    left: 14px;
+    top: -2px;
+    width: 0;
+    height: 0;
+    border-left: 153px solid transparent;
+    border-right: 133px solid transparent;
+    border-bottom: 140px solid #FFCA3D;
+    transform: rotate(180deg);
+}
+
+.scorer-1-tick {
+    position: absolute;
+    top: 40%;
+    left: -250%;
+    width: 300%;
+    height: 5px;
+    background-color: #000000;
+    animation-name: ticker-mover-1;
+    animation-duration: 2000s;
+    animation-iteration-count: initial;
+    animation-timing-function: step-start;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.scorer-2-tick {
+    position: absolute;
+    top: 40%;
+    left: -250%;
+    width: 300%;
+    height: 5px;
+    background-color: #000000;
+    animation-name: ticker-mover-2;
+    animation-duration: 2000s;
+    animation-iteration-count: initial;
+    animation-timing-function: step-start;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.scorer-3-tick {
+    position: absolute;
+    top: 40%;
+    left: -250%;
+    width: 300%;
+    height: 5px;
+    background-color: #000000;
+    animation-name: ticker-mover-3;
+    animation-duration: 2000s;
+    animation-iteration-count: initial;
+    animation-timing-function: step-start;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+#scorer-1-inner-div-5 {
+    position: absolute;
+    left: 45%;
+    top: 80%;
+    width: 10%;
+    height: 20%;
+    border-radius: 50%;
+    background-color: #000000;
+    z-index: 2;
+}
+
+@keyframes ticker-mover-1 {
+    33% {
+        transform-origin: right center;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes ticker-mover-2 {
+    66% {
+        transform-origin: right center;
+        transform: rotate(100deg);
+    }
+}
+
+@keyframes ticker-mover-3 {
+    100% {
+        transform-origin: right center;
+        transform: rotate(165deg);
+    }
+}
+.form-group {
+    margin-bottom: 0.6rem;
+}

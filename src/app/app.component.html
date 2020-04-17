@@ -1,15 +1,15 @@
-<app-multi-step-form
-*ngIf="!firstPage"
-class="multi-step-form"
-[firstPage]="firstPage"
-[formContent]="formContent"
-(formSubmit)="onFormSubmit($event)"
-></app-multi-step-form>
-<nav *ngIf="firstPage">
-    <img src="assets/img/mob.png" class="fullimg" alt="" >
-    <div class="btnWraper ">
-        <a class="pull-left" target="_blank" href="https://d1bo30h54isobh.cloudfront.net/assets/img/Covid_19_Risk_Assessment_Tool_about.pdf" >About the Tool</a>
-        <a class="pull-right" href="javascript:void(0);" (click)="toSurvey()">Take me to survey</a>
+<app-multi-step-form *ngIf="!firstPage" class="multi-step-form" [firstPage]="firstPage" [formContent]="formContent" (formSubmit)="onFormSubmit($event)"></app-multi-step-form>
+
+<section *ngIf="firstPage" class="bg-img">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12 img-text"><img src="./../assets/img/covid-title.png" class="img-fluid"></div>
+            <div class="col-md-12 btnContainer">
+                <a class="pull-left btn1" target="_blank" href="https://d1bo30h54isobh.cloudfront.net/assets/img/Covid_19_Risk_Assessment_Tool_about.pdf">About the
+              Tool</a>
+                <a class="pull-right btn1" href="javascript:void(0);" (click)="toSurvey()">Take me to survey</a>
+            </div>
+            <div class="col-md-12 text-right"><img src="./../assets/img/powered-by.png" class="img-fluid"></div>
+        </div>
     </div>
-  
-</nav>
+</section>

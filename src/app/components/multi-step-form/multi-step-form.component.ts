@@ -4,7 +4,7 @@ import { QuestionService } from '../../services/question.service';
 import { HitCount } from 'src/app/models/HitCount';
 import { Question } from 'src/app/models/Question';
 import { SurveyResponse } from 'src/app/models/SurveyResponse';
-import { states } from '../../constants/states.json';
+import { states } from '../../constants/pincode.json';
 
 @Component({
   selector: 'app-multi-step-form',
@@ -36,6 +36,7 @@ export class MultiStepFormComponent implements OnInit {
   riskFactor: string;
   riskColor: string;
   showSpeedometer: boolean;
+  donatePage: boolean;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -49,6 +50,7 @@ export class MultiStepFormComponent implements OnInit {
         surveys: hitCount.surveys
       }
     });
+    this.donatePage = false;
     console.log(this.formContent);
     this.activeStepIndex = 0;
     this.states = states;
@@ -122,14 +124,19 @@ export class MultiStepFormComponent implements OnInit {
   }
 
   getDistricts(e, type): void {
-    var selectedState = this.masterForm[this.activeStepIndex].controls['state'].value;
     if(type == 'state'){
+      var selectedState = this.masterForm[this.activeStepIndex].controls['state'].value;
       if(this.currentFormContent[this.activeStepIndex+1] && this.currentFormContent[this.activeStepIndex+1].hasOwnProperty('district')){
-        var filtered = this.states.filter(state => {
-          return state.state == selectedState;
-        });
-        this.currentFormContent[this.activeStepIndex+1]['district'].options = filtered[0].districts;
+        var filtered = Object.keys(this.states[selectedState]);
+        this.currentFormContent[this.activeStepIndex+1]['district'].options = filtered;
       } 
+    } else {
+      var selectedState = this.masterForm[this.activeStepIndex-1].controls['state'].value;
+      var selectedDistrict = this.masterForm[this.activeStepIndex].controls['district'].value;
+      if(this.currentFormContent[this.activeStepIndex+1] && this.currentFormContent[this.activeStepIndex+1].hasOwnProperty('pincode')){
+        var filtered = Object.keys(this.states[selectedState][selectedDistrict]);
+        this.currentFormContent[this.activeStepIndex+1]['pincode'].options = filtered;
+      }
     }
   }
 
@@ -231,5 +238,9 @@ export class MultiStepFormComponent implements OnInit {
 
   onDivClick(i, field, code) {
     this.masterForm[i].controls[field].setValue(code);
+  }
+
+  goToDonate(): void {
+    this.donatePage = true;
   }
 }

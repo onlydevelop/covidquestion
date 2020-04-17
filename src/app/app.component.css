@@ -9,3 +9,93 @@ p {
   border: 1px solid gray;
   border-radius: 10px;
 }
+
+.bg-img{background-image: url("../assets/img/banner-1500x1000.jpg"); background-repeat: no-repeat;background-attachment: scroll; background-position: center center; background-size: cover;
+  height: 100vh;}
+
+  .buttonAdjust{
+    padding-top: 80vh ;
+  }
+
+  .adjustButton{
+    padding-left: 13vw;
+    text-align: right;
+  }
+
+  .img-text img{width: 42vw!important;}
+
+  .btnContainer{
+    padding-left: 8%;
+    padding-top: 3%;
+  }
+
+  .btn1 {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+@media (min-width: 480px) and (max-width: 1024px) { 
+  .bg-img{background-image: url("../assets/img/banner-1080x720.jpg"); background-repeat: no-repeat;background-attachment: scroll; background-position: center center; background-size: cover;
+    height: 100vh;}
+    .img-text img {
+      width: 100vw!important;
+  }
+  .btnContainer {
+    padding-left: 21vw;
+    padding-top: 10vh;
+    padding-bottom: 15vh;
+}
+.btn1 {
+  padding: 1.8rem;
+  font-size: 1.5rem;
+}
+}
+@media (max-width: 320px){ 
+  .img-text img {
+    width: 100vw!important;
+}
+.btnContainer {
+  padding-left: 8%;
+  padding-top: 25%;
+  padding-bottom: 35%;
+}
+.btn1 {
+padding: 0.8rem;
+font-size: 0.8rem;
+}
+}
+@media (min-width: 321px) and (max-width: 375px){ 
+  .bg-img{background-image: url("../assets/img/banner/mob.jpg"); background-repeat: no-repeat;background-attachment: scroll; background-position: center center; background-size: cover;
+    height: 100vh;}
+    
+    .img-text img {
+      width: 100vw!important;
+  }
+  .btnContainer {
+    padding-left: 8%;
+    padding-top: 25%;
+    padding-bottom: 40%;
+}
+.btn1 {
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+}
+
+@media (min-width: 376px) and (max-width: 441px){ 
+  .bg-img{background-image: url("../assets/img/banner/mob.jpg"); background-repeat: no-repeat;background-attachment: scroll; background-position: center center; background-size: cover;
+    height: 100vh;}
+    
+    .img-text img {
+      width: 100vw!important;
+  }
+  .btnContainer {
+    padding-left: 8%;
+    padding-top: 25%;
+    padding-bottom: 40%;
+}
+.btn1 {
+  padding: 1rem;
+  font-size: 1rem;
+}
+}
